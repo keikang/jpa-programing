@@ -1,0 +1,107 @@
+spring:
+  profiles:
+    active: local1.4
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local1.4
+  datasource:
+    url: jdbc:postgresql://localhost:8433/jpa_study
+    username: age
+    password: age
+    host: localhost
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:postgresql://localhost:8432/postgres
+    username: age
+    password: age
+    host: 192.168.0.75
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:8433/postgres
+    username: age
+    password: age
+    host: localhost
+
+---
+
+#spring:
+#  config:
+#    activate:
+#      on-profile: dev
+#  datasource:
+#    url: jdbc:postgresql://192.168.0.65:5414/postgres
+#    username: agens
+#    password: agens
+
+spring:
+  jpa:
+    #database-platform: org.hibernate.dialect.H2Dialect
+    database: postgresql
+    hibernate:
+
+      ddl-auto: update
+#      naming:
+#        physical-strategy: com.bitnine.config.HibernateInterceptor
+
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        use_sql_comments: false
+        default_batch_fetch_size: 100 # With this option, the collection or proxy object is queried with IN queries as many sizes as set at once.
+  #data:
+  #  redis:
+  #    host: 127.0.0.1
+  #    port: 6379
+  security:
+    filter:
+      dispatcher-types: request
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 2024MB
+      #max-file-size: 52428800
+      #max-request-size: 52428800
+
+
+jwt:
+  secret: 8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb
+
+logging:
+  level:
+    com.bitnine.springsecurityjwtredis: warn
+    org.hibernate.SQL: warn
+    org.hibernate.type.descriptor.sql: warn
+
+
+server:
+  # Sevlet(또는 @RequestParm을 위한) charset 설정
+  port: 10002
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+property:
+  mail:
+    sender:
+      id: dev01@bitnine.net
+      passwd: zcsjtceyaghsdtsv
+
